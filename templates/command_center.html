@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<center>
+	{% if stage == 'ip_in' %}
+		Sending to LIVE IP: {{ el_ip }}
+		<br>
+		<form action = '/cue_command/' method = 'POST'>
+			<input type ='submit' name = 'cue_button' value = 'Start cue'> 
+			<input type ='submit' name = 'cue_button' value = 'Stop cue'> 
+		</form>
+	{% elif stage == 'cue_command' %}
+	{% endif %}
+</center>
+
+{% endblock %}
