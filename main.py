@@ -15,9 +15,10 @@ def index():
 def command_center():
 	global elemental_ip
 	if request.method == 'POST':
-		stage = 'ip_in'
-		elemental_ip = request.form['elemental_ip']
-		return render_template('command_center.html', stage=stage, el_ip = elemental_ip)
+		if request.form['ip_button'] == 'Enter IP': 			# If form for IP is pressed from index page
+			stage = 'ip_in'
+			elemental_ip = request.form['elemental_ip']
+			return render_template('command_center.html', stage=stage, el_ip = elemental_ip)
 		
 @app.route("/cue_command/", methods=['GET', 'POST'])
 def cue_command():
