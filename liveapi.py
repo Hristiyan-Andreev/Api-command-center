@@ -11,22 +11,33 @@ def list_live_events(elemental_ip):
 	response = req.get(url, headers)
 	return response.status_code
 	
-def start_cue_point(elemental_ip, stream_id):
+def cue_command(elemental_ip, stream_id, command):
 	endpoint = '/api/live_events/' + stream_id + '/cue_point/'
 	myheaders = {'Accept': 'application/xml', 'Content-type': 'application/xml'}
-	body = {
+	if command == 'start_cue':
+		body = {
+				'cue_point':{
+				'event_id': stream_id,
+				'splice_offset': '0',
+				'duration': '0'	
+							}
+				}
+				
+	elif command == 'stop_cue':
+		body = {
 			'cue_point':{
 			'event_id': stream_id,
-			'splice_offset': '0',
-			'duration': '0'	
+			'return_offset': 0
 						}
-			}
+				}
+				
 	bodyxml = dicttoxml.dicttoxml(body, root=False, attr_type=False)
 	url = 'http://' + elemental_ip + endpoint
+	print(bodyxml)
+	print(url)
 	
 	response = req.post(url, headers = myheaders, data = bodyxml)
-		
-	#return str(response.status_code)
+	
 	return response.text
 	
 
@@ -42,6 +53,8 @@ def stop_cue_point(elemental_ip, stream_id):
 	bodyxml = dicttoxml.dicttoxml(body, root=False, attr_type=False)
 	url = 'http://' + elemental_ip + endpoint
 	response = req.post(url, headers = myheaders, data = bodyxml)
+	print(bodyxml)
+	print(url)
 	
 	return response.text
 	#return response
