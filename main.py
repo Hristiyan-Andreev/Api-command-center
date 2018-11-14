@@ -33,7 +33,6 @@ def cue_command():
 				print(command)
 			
 			response = liveapi.cue_command(elemental_ip, '17', command)
-			#response = liveapi.stop_cue_point(elemental_ip, '17')
 			return response
 			
 	

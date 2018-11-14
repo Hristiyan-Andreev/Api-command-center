@@ -5,8 +5,8 @@
 	{% if stage == 'index' %}
 		<form method= 'POST' action = '/command_center/'>
 			<label>Elemental LIVE IP:</label>
-			<input type="text" name = 'elemental_ip'/>
-			<input type ='submit' name = 'ip_button' value = 'Enter IP'> 
+			<input id='el_ip' type="text" name = 'elemental_ip'/>
+			<input onclick='show_save_ip()' type ='submit' name = 'ip_button' value = 'Enter IP'> 
 		</form> 
 	{% endif %}
 </center>
